@@ -84,3 +84,22 @@ form .row .outer {
     justify-content: center;
     border: 1px solid #999;
 }
+
+form .row select {
+    font-size: 14px;
+    background: none;
+}
+
+form .row select::-webkit-scrollbar {
+    width: 8px;
+}
+
+form .row select::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+form .row select::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 8px;
+    border-right: 2px solid #ffffff;
+}
