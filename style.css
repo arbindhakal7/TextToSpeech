@@ -103,3 +103,24 @@ form .row select::-webkit-scrollbar-thumb {
     border-radius: 8px;
     border-right: 2px solid #ffffff;
 }
+
+form button {
+    height: 52px;
+    color: #fff;
+    font-size: 17px;
+    cursor: pointer;
+    margin-top: 10px;
+    background: #675AFE;
+    transition: 0.3s ease;
+}
+
+form button:hover {
+    background: #4534fe;
+}
+
+@media(max-width: 400px) {
+    .wrapper {
+        max-width: 345px;
+        width: 100%;
+    }
+}
