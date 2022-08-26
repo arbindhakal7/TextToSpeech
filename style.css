@@ -54,3 +54,33 @@ form .row label {
 form .row:nth-child(2) label {
     font-size: 17px;
 }
+
+form :where(textarea, select, button) {
+    outline: none;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 5px;
+}
+
+form .row textarea {
+    resize: none;
+    height: 110px;
+    font-size: 15px;
+    padding: 8px 10px;
+    border: 1px solid #999;
+}
+
+form .row textarea::-webkit-scrollbar {
+    width: 0px;
+}
+
+form .row .outer {
+    height: 47px;
+    display: flex;
+    padding: 0 10px;
+    align-items: center;
+    border-radius: 5px;
+    justify-content: center;
+    border: 1px solid #999;
+}
