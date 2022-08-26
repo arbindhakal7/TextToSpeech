@@ -1,9 +1,9 @@
 const textarea = document.querySelector("textarea"),
     speechBtn = document.querySelector("button"),
-    voiceList = document.querySelector("select")
+    voiceList = document.querySelector("select");
 
-let synth = speechSynthesis
-isSpeaking = true
+let synth = speechSynthesis;
+isSpeaking = true;
 
 function voices() {
     for (let voice of synth.getVoices()) {
@@ -32,21 +32,33 @@ function textToSpeech(text) {
 speechBtn.addEventListener("click", (e) => {
     e.preventDefault();
     if (textarea.value !== "") {
-        if (!synth.speaking) {  // if the speech/utternance is not currently in process of speaking
+        if (!synth.speaking) {
+            // if the speech/utternance is not currently in process of speaking
             textToSpeech(textarea.value);
         }
-        if(textarea.value.length > 80){
-        // if isSpeaking is true then change its value to false and resume the speech
-        // else change its value to true and pause the speech
-            if(isSpeaking){
+        if (textarea.value.length > 80) {
+            // if isSpeaking is true then change its value to false and resume the speech
+            // else change its value to true and pause the speech
+            if (isSpeaking) {
                 synth.resume();
                 isSpeaking = false;
                 speechBtn.innerText = "Pause Speech";
-            }else{
+            } else {
                 synth.pause();
                 isSpeaking = true;
                 speechBtn.innerText = "Resume Speech";
             }
+
+            // checking if the speech is in speaking process or not in every 100 ms
+            // if not then set the value of isSpeaking to true and add the change the button text
+            setInterval(() => {
+                if (!synth.speaking && !isSpeaking) {
+                    isSpeaking = true;
+                    speechBtn.innerText = "Convert To Speech";
+                }
+            }, 500);
+        } else {
+            speechBtn.innerText = "Convert To Speech";
         }
     }
 });
