@@ -1,8 +1,9 @@
 const textarea = document.querySelector("textarea"),
     speechBtn = document.querySelector("button"),
-    voiceList = document.querySelector("select");
+    voiceList = document.querySelector("select")
 
-let synth = speechSynthesis;
+let synth = speechSynthesis
+isSpeaking = true
 
 function voices() {
     for (let voice of synth.getVoices()) {
@@ -33,6 +34,19 @@ speechBtn.addEventListener("click", (e) => {
     if (textarea.value !== "") {
         if (!synth.speaking) {  // if the speech/utternance is not currently in process of speaking
             textToSpeech(textarea.value);
+        }
+        if(textarea.value.length > 80){
+        // if isSpeaking is true then change its value to false and resume the speech
+        // else change its value to true and pause the speech
+            if(isSpeaking){
+                synth.resume();
+                isSpeaking = false;
+                speechBtn.innerText = "Pause Speech";
+            }else{
+                synth.pause();
+                isSpeaking = true;
+                speechBtn.innerText = "Resume Speech";
+            }
         }
     }
 });
