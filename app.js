@@ -9,7 +9,7 @@ function voices(){
         //select Google US English voice as default
         let selected = voice.name === "Google US English" ? "selected" : "";
         // creating an option tag passing voice name and language
-        let option = `<option value="${voice.name}" ${selected}>${voice.name} (${voice.lang})</option>`;
+        let option = `<option value="${voice.name}" ${selected}>${voice.lang} (${voice.name})</option>`;
         voiceList.insertAdjacentHTML("beforeend", option); //insert option tag before end of select tag
     }
 }
@@ -18,14 +18,14 @@ synth.addEventListener("voiceschanged", voices);
 
 function textToSpeech(text){
     let utternance = new SpeechSynthesisUtterance(text)
-
+    // if the available device voice is equal to the user selected voice name
+    // then set the speech voice to the user selected voice
     for(let voice of synth.getVoices()){
         if(voice.name === voiceList.value){
-            utterance.voice = voice;
+            utternance.voice = voice;
         }
     }
-    
-    speechSynthesis.speak(utternance)
+    synth.speak(utternance)
 }
 
 speechBtn.addEventListener("click", e =>{
